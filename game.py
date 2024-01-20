@@ -25,27 +25,23 @@ isRedMax = False
 while running:
     clock.tick(FPS)
     screen.fill((red,green,blue))
-    # green = green + 1
+    green = green + 1
   
-    # if green == 255:
-    #     green = 0
-    if isRedMax == True:
-        green = green +1 
-    else:
-        red = red + 1
-        if red == 255:
-            red = 0
-            isRedMax = True
-    
+    if green == 255:
+        green = 0
+   
     
    
-
-
     pygame.draw.rect(screen,(100,50,200),[0,0,100,200])
 
     for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                running = False
+        if event.type == pygame.QUIT:
+            running = False
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_w:
+                print("нажали на w")
+
+
 
     pygame.display.flip()
 pygame.quit()
