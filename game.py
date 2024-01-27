@@ -1,6 +1,9 @@
 import pygame
+import random
 
 WIDTH = 360
+width_player = 50
+height_player = 50
 HEIGHT = 480
 FPS = 30
 y = 0
@@ -34,28 +37,50 @@ while running:
    
     
    
-    pygame.draw.rect(screen,(100,50,200),[x,y,100,200])
+    pygame.draw.rect(screen,(100,50,200),[x,y,width_player,height_player])
 
     pygame.draw.circle(screen,colorApple,[x_APPLE,y_Apple],15)
 
+    
+        # if event.type == pygame.KEYDOWN:
+        #     if event.key == pygame.K_w:
+        #         y = y - 100
+        #         print("нажали на w")
+        #     if event.key == pygame.K_s:
+        #         y = y + 100
+        #         print("нажали на S")
+        #     if event.key == pygame.K_d:
+        #         x = x + 100
+        #         print("нажали на D")
+        #     if event.key == pygame.K_a:
+        #         x = x - 100
+        #         print("нажали на A")
+    
+    if ((x<x_APPLE and x_APPLE<x+50 + width_player)and(y<y_Apple and y_Apple<y+50 + height_player)):
+        width_player += 10
+        x_APPLE = random.randint(0,WIDTH)
+        y_Apple = random.randint(0,WIDTH)
+        pygame.draw.circle(screen,colorApple,[x_APPLE,y_Apple],15)
+
+
+
+
+
+    keys = pygame.key.get_pressed()
+    if keys[pygame.K_w]:
+        y -= 10
+    if keys[pygame.K_s]:
+        y += 10
+    if keys[pygame.K_a]:
+        x -= 10
+    if keys[pygame.K_d]:
+        x += 10
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
-        if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_w:
-                y = y - 100
-                print("нажали на w")
-            if event.key == pygame.K_s:
-                y = y + 100
-                print("нажали на S")
-            if event.key == pygame.K_d:
-                x = x + 100
-                print("нажали на D")
-            if event.key == pygame.K_a:
-                x = x - 100
-                print("нажали на A")
-
-
-
+    if (x<0 or x>WIDTH-50):
+        running = False
+        pass
+        
     pygame.display.flip()
 pygame.quit()
