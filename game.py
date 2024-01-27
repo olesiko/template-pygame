@@ -56,7 +56,7 @@ while running:
         #         x = x - 100
         #         print("нажали на A")
     
-    if ((x<x_APPLE and x_APPLE<x+50 + width_player)and(y<y_Apple and y_Apple<y+50 + height_player)):
+    if ((x<x_APPLE+15 and x_APPLE<x-15 + width_player)and(y<y_Apple+15 and y_Apple<y-15 + height_player)):
         width_player += 10
         x_APPLE = random.randint(0,WIDTH)
         y_Apple = random.randint(0,WIDTH)
